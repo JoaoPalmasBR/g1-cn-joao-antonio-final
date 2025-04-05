@@ -1,0 +1,40 @@
+services:
+    app1:
+        build: ./app
+        ports:
+            - "5001:5000"
+        volumes:
+            - ./mensagens:/mensagens
+        networks:
+            - rede_mensagens
+        environment:
+            - NOME_INSTANCIA=app1
+
+    app2:
+        build: ./app
+        ports:
+            - "5002:5000"
+        volumes:
+            - ./mensagens:/mensagens
+        networks:
+            - rede_mensagens
+        environment:
+            - NOME_INSTANCIA=app2
+
+    app3:
+        build: ./app
+        ports:
+            - "5003:5000"
+        volumes:
+            - ./mensagens:/mensagens
+        networks:
+            - rede_mensagens
+        environment:
+            - NOME_INSTANCIA=app3
+
+volumes:
+    mensagens:
+
+networks:
+    rede_mensagens:
+        driver: bridge
