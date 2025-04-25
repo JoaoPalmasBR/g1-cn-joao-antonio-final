@@ -19,7 +19,7 @@ Desenvolvido por João Antonio dos Santos Ilario.
 
 ## Funcionalidades
 
-- Criação de notas
+- Criação de mensagens
 - Listagem de todas as anotações
 - Interface responsiva feita com React
 - Sincronização entre containers
@@ -45,3 +45,21 @@ Desenvolvido por João Antonio dos Santos Ilario.
 ```bash
     docker-compose up --build
 ```
+
+## Atividade adicionando HTTPS
+
+https://fastapi.tiangolo.com/pt/deployment/docker/#https
+
+### Passo a Passo
+1. Criar a pasta que armazena o certificado
+
+2. Executar o ssh para gerar o certificado dentro dela
+    ```bash
+      openssl req -x509 -newkey rsa:4096 -keyout certificados/key.pem -out certificados/cert.pem -days 365 -nodes -subj "/CN=localhost"
+    ```
+
+3. modificar CMD do Dockerfile
+  #CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000"]
+  CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000", "--ssl-keyfile", "/certificados/key.pem", "--ssl-certfile", "/certificados/cert.pem"]
+
+4. adicionar o volume ./certificado em cada serviço e nos volumes

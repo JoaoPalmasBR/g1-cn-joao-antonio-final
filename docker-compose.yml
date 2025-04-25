@@ -5,6 +5,7 @@ services:
             - "5001:5000"
         volumes:
             - ./mensagens:/mensagens
+            - ./certificados:/certificados
         networks:
             - rede_mensagens
         environment:
@@ -16,6 +17,7 @@ services:
             - "5002:5000"
         volumes:
             - ./mensagens:/mensagens
+            - ./certificados:/certificados
         networks:
             - rede_mensagens
         environment:
@@ -27,6 +29,7 @@ services:
             - "5003:5000"
         volumes:
             - ./mensagens:/mensagens
+            - ./certificados:/certificados
         networks:
             - rede_mensagens
         environment:
@@ -34,6 +37,7 @@ services:
 
 volumes:
     mensagens:
+    certificados:
 
 networks:
     rede_mensagens:
