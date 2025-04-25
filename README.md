@@ -1,8 +1,8 @@
-# NotasAPP
+# MensagensAPP
 
 Este é um projeto de gerenciamento de mensagens com suporte a Docker para facilitar o desenvolvimento e a implantação.
 
-## 🙋‍♂️ Autores
+## 🙋‍♂️ Autor
 
 Desenvolvido por João Antonio dos Santos Ilario.
 
@@ -16,6 +16,7 @@ Desenvolvido por João Antonio dos Santos Ilario.
 
 - [Docker](https://www.docker.com/) e [Docker Compose](https://docs.docker.com/compose/) instalados.
 - Python 3.11 (para desenvolvimento do backend).
+- Certificado SSH autogerado
 
 ## Funcionalidades
 
@@ -23,6 +24,7 @@ Desenvolvido por João Antonio dos Santos Ilario.
 - Listagem de todas as anotações
 - Interface responsiva feita com React
 - Sincronização entre containers
+- Comunicação segura com HTTPS (SSH)
 
 ## Tecnologias Utilizadas
 
@@ -38,7 +40,7 @@ Desenvolvido por João Antonio dos Santos Ilario.
    ```bash
    docker-compose up --build
    ```
-3. Acesse o frontend em http://localhost e a API em http://localhost/api/
+3. Acesse a API em http://localhost:5001/docs/ , http://localhost:5003/docs , http://localhost:5003/docs
 
 ### Rodando a Imagem e os Conteiners
 
@@ -46,7 +48,7 @@ Desenvolvido por João Antonio dos Santos Ilario.
     docker-compose up --build
 ```
 
-## Atividade adicionando HTTPS
+## Atividade adicionando HTTPS (25/04/2025)
 
 https://fastapi.tiangolo.com/pt/deployment/docker/#https
 
@@ -63,3 +65,7 @@ https://fastapi.tiangolo.com/pt/deployment/docker/#https
   CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000", "--ssl-keyfile", "/certificados/key.pem", "--ssl-certfile", "/certificados/cert.pem"]
 
 4. adicionar o volume ./certificado em cada serviço e nos volumes
+
+5. Subir o container com DOCKER COMPOSE UP
+
+6. Acesse a API com HTTPS em https://localhost:5001/docs/ , https://localhost:5003/docs , https://localhost:5003/docs
