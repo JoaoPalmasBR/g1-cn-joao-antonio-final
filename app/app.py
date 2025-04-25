@@ -9,25 +9,6 @@ app = FastAPI()
 NOME_INSTANCIA = os.getenv("NOME_INSTANCIA", "app")
 CAMINHO_ARQUIVO = f"/mensagens/{NOME_INSTANCIA}.json"
 
-# Inicializa o arquivo de log da instância
-os.makedirs(os.path.dirname(CAMINHO_ARQUIVO), exist_ok=True)
-if not os.path.exists(CAMINHO_ARQUIVO):
-    with open(CAMINHO_ARQUIVO, "w") as f:
-        json.dump([], f)
-
-class Mensagem(BaseModel):
-    message: str
-
-from fastapi import FastAPI
-from pydantic import BaseModel
-import os
-import json
-import requests
-
-app = FastAPI()
-NOME_INSTANCIA = os.getenv("NOME_INSTANCIA", "app")
-CAMINHO_ARQUIVO = f"/mensagens/{NOME_INSTANCIA}.json"
-
 # Garante que o arquivo existe
 os.makedirs(os.path.dirname(CAMINHO_ARQUIVO), exist_ok=True)
 if not os.path.exists(CAMINHO_ARQUIVO):
@@ -43,7 +24,7 @@ def gravar_mensagem_localmente(mensagem: dict):
         mensagens.append(mensagem)
         f.seek(0)
         json.dump(mensagens, f, indent=2)
-        f.truncate()  # <- ESSENCIAL para remover o lixo do final do arquivo
+        f.truncate()  # <- PRECISA para remover o lixo do final do arquivo
 
 
 def replicar_para_outros_containers(mensagem: dict):
